@@ -32,7 +32,7 @@ export function SearchBar({
         defaultValue={value}
         onChange={handleChange}
         placeholder={placeholder}
-        className="w-full rounded-lg border border-neutral-300 bg-transparent py-2 pl-9 pr-4 text-sm outline-none transition-colors placeholder:text-neutral-400 focus:border-blue-500 dark:border-neutral-700 dark:focus:border-blue-400"
+        className="w-full rounded-lg border border-neutral-200 bg-transparent py-2 pl-9 pr-4 text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-400 focus:border-blue-500 dark:border-neutral-700 dark:text-white dark:placeholder:text-neutral-500 dark:focus:border-blue-500"
       />
       {value && (
         <button

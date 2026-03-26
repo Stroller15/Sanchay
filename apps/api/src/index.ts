@@ -1,3 +1,4 @@
+import "dotenv/config";
 import "./lib/env"; // Validate env vars at startup
 import { createApp } from "./app";
 import { env } from "./lib/env";

@@ -64,7 +64,7 @@ export function PasteBar({ defaultCollectionId }: PasteBarProps) {
             value={url}
             onChange={handleChange}
             placeholder="Paste a URL to save — GitHub, YouTube, PDF, article…"
-            className="w-full rounded-lg border border-neutral-300 bg-transparent px-4 py-2.5 text-sm outline-none transition-colors placeholder:text-neutral-400 focus:border-blue-500 dark:border-neutral-700 dark:focus:border-blue-400"
+            className="w-full rounded-lg border border-neutral-200 bg-transparent px-4 py-2.5 text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-400 focus:border-blue-500 dark:border-neutral-700 dark:text-white dark:placeholder:text-neutral-500 dark:focus:border-blue-500"
           />
           {validUrl && (
             <div className="absolute right-3 top-1/2 flex -translate-y-1/2 items-center gap-1.5">
@@ -90,7 +90,7 @@ export function PasteBar({ defaultCollectionId }: PasteBarProps) {
         <select
           value={selectedCollectionId ?? ""}
           onChange={(e) => setSelectedCollectionId(e.target.value || undefined)}
-          className="rounded-lg border border-neutral-300 bg-transparent px-3 py-2.5 text-sm outline-none transition-colors focus:border-blue-500 dark:border-neutral-700 dark:focus:border-blue-400"
+          className="rounded-lg border border-neutral-200 bg-transparent px-3 py-2.5 text-sm text-neutral-900 outline-none transition-colors focus:border-blue-500 dark:border-neutral-700 dark:text-white dark:focus:border-blue-500"
         >
           <option value="">Unsorted</option>
           {collections?.map((c) => (

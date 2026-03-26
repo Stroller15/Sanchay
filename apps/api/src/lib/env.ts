@@ -18,7 +18,7 @@ const envSchema = z.object({
   CORS_ORIGIN: z.string().default("http://localhost:3000"),
 
   // Sentry
-  SENTRY_DSN: z.string().url().optional(),
+  SENTRY_DSN: z.string().url().or(z.literal("")).optional(),
 });
 
 const parsed = envSchema.safeParse(process.env);

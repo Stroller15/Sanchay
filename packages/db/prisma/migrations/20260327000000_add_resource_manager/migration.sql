@@ -1,3 +1,19 @@
+-- CreateTable: users
+CREATE TABLE "users" (
+    "id" TEXT NOT NULL,
+    "providerId" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "name" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_providerId_key" ON "users"("providerId");
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+
 -- CreateTable: collections
 CREATE TABLE "collections" (
     "id" TEXT NOT NULL,
