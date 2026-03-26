@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id          String       @id @default(cuid())
+  providerId  String       @unique
+  email       String       @unique
+  name        String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  collections Collection[]
+  resources   Resource[]
+  apiKeys     ApiKey[]
+
+  @@map("users")
+}
+
+model Collection {
+  id        String     @id @default(cuid())
+  userId    String
+  name      String
+  emoji     String     @default("📁")
+  position  Int        @default(0)
+  createdAt DateTime   @default(now())
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resources Resource[]
+
+  @@map("collections")
+}
+
+model Resource {
+  id           String     @id @default(cuid())
+  userId       String
+  collectionId String
+  url          String
+  title        String
+  favicon      String?
+  type         String     @default("article") // github | video | pdf | article | other
+  notes        String?
+  tags         String[]   @default([])
+  savedAt      DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Restrict)
+
+  @@map("resources")
+}
+
+model ApiKey {
+  id        String   @id @default(cuid())
+  userId    String
+  key       String   @unique // SHA-256 hash of the actual key
+  label     String   @default("API Key")
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("api_keys")
+}
