@@ -85,8 +85,7 @@ export default function DashboardPage() {
 
       <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
         {/* Top bar */}
-        <header className="flex items-center justify-between border-b border-[--color-border] bg-[--color-surface] px-5 py-3">
-          <div className="flex-1" />
+        <header className="flex items-center justify-end border-b border-[--color-border] bg-[--color-surface] px-5 py-3">
           <div className="flex items-center gap-1.5">
             <ThemeToggle />
             <a
