@@ -43,7 +43,7 @@ export function PasteBar({ defaultCollectionId }: PasteBarProps) {
     try {
       new URL(url);
     } catch {
-      return; // invalid URL, let native validation handle it
+      return;
     }
 
     await createResource.mutateAsync({
@@ -56,7 +56,7 @@ export function PasteBar({ defaultCollectionId }: PasteBarProps) {
   }
 
   return (
-    <div className="border-b border-neutral-200 p-4 dark:border-neutral-800">
+    <div className="border-b border-[--color-border] bg-[--color-surface] p-4">
       <form onSubmit={handleSave} className="flex gap-2">
         <div className="relative flex-1">
           <input
@@ -64,14 +64,16 @@ export function PasteBar({ defaultCollectionId }: PasteBarProps) {
             value={url}
             onChange={handleChange}
             placeholder="Paste a URL to save — GitHub, YouTube, PDF, article…"
-            className="w-full rounded-lg border border-neutral-200 bg-transparent px-4 py-2.5 text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-400 focus:border-blue-500 dark:border-neutral-700 dark:text-white dark:placeholder:text-neutral-500 dark:focus:border-blue-500"
+            className="w-full rounded-lg border border-[--color-border] bg-[--color-bg] px-4 py-2.5 text-sm text-[--color-text-primary] outline-none transition-colors placeholder:text-[--color-text-tertiary] focus:border-[--color-text-secondary]"
           />
           {validUrl && (
             <div className="absolute right-3 top-1/2 flex -translate-y-1/2 items-center gap-1.5">
               {previewLoading ? (
-                <span className="animate-pulse text-xs text-neutral-400">Fetching…</span>
+                <span className="animate-pulse text-xs text-[--color-text-tertiary]">
+                  Fetching…
+                </span>
               ) : preview ? (
-                <span className="flex max-w-[200px] items-center gap-1 truncate text-xs text-neutral-500">
+                <span className="flex max-w-[200px] items-center gap-1 truncate text-xs text-[--color-text-secondary]">
                   {preview.favicon && (
                     <img
                       src={preview.favicon}
@@ -90,7 +92,7 @@ export function PasteBar({ defaultCollectionId }: PasteBarProps) {
         <select
           value={selectedCollectionId ?? ""}
           onChange={(e) => setSelectedCollectionId(e.target.value || undefined)}
-          className="rounded-lg border border-neutral-200 bg-transparent px-3 py-2.5 text-sm text-neutral-900 outline-none transition-colors focus:border-blue-500 dark:border-neutral-700 dark:text-white dark:focus:border-blue-500"
+          className="rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2.5 text-sm text-[--color-text-primary] outline-none transition-colors focus:border-[--color-text-secondary]"
         >
           <option value="">Unsorted</option>
           {collections?.map((c) => (
@@ -103,7 +105,7 @@ export function PasteBar({ defaultCollectionId }: PasteBarProps) {
         <button
           type="submit"
           disabled={!url.trim() || createResource.isPending}
-          className="rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-[10px] bg-[--color-accent] px-4 py-2.5 text-sm font-medium text-[--color-accent-fg] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
         >
           {createResource.isPending ? "Saving…" : "Save"}
         </button>
