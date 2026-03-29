@@ -37,7 +37,7 @@ export default function HomePage() {
             </a>
           ) : (
             <button
-              onClick={() => signIn()}
+              onClick={() => signIn("google")}
               className="inline-flex items-center gap-2 rounded-[10px] bg-[--color-accent] px-6 py-3 text-sm font-semibold text-[--color-accent-fg] transition-opacity hover:opacity-90"
             >
               Get Started →
