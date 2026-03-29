@@ -39,67 +39,67 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
-      <header className="border-b border-neutral-200 bg-white px-6 py-4 dark:border-neutral-800 dark:bg-neutral-900">
+    <div className="min-h-screen bg-[--color-bg]">
+      <header className="border-b border-[--color-border] bg-[--color-surface] px-6 py-4">
         <div className="mx-auto flex max-w-2xl items-center gap-4">
           <a
             href="/dashboard"
-            className="text-sm text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300"
+            className="text-sm text-[--color-text-secondary] hover:text-[--color-text-primary]"
           >
             ← Dashboard
           </a>
-          <h1 className="text-base font-semibold">Settings</h1>
+          <h1 className="text-base font-semibold text-[--color-text-primary]">Settings</h1>
         </div>
       </header>
 
       <main className="mx-auto max-w-2xl px-6 py-8">
         <section>
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral-500">
-            API Keys
-          </h2>
-          <p className="mb-4 text-sm text-neutral-500">
+          <h2 className="mb-1 text-xl font-bold text-[--color-text-primary]">API Keys</h2>
+          <p className="mb-6 text-sm text-[--color-text-secondary]">
             Use API keys to authenticate the Chrome extension or any external client. The key is
             shown once — store it securely.
           </p>
 
           {/* Generate new key */}
-          <form onSubmit={handleGenerate} className="mb-6 flex gap-2">
-            <input
-              type="text"
-              value={newKeyLabel}
-              onChange={(e) => setNewKeyLabel(e.target.value)}
-              placeholder='Label (e.g. "Chrome Extension")'
-              className="flex-1 rounded-lg border border-neutral-300 bg-transparent px-3 py-2 text-sm outline-none focus:border-blue-500 dark:border-neutral-700"
-            />
-            <button
-              type="submit"
-              disabled={createApiKey.isPending}
-              className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50"
-            >
-              Generate Key
-            </button>
-          </form>
+          <div className="mb-6 rounded-xl border border-[--color-border] bg-[--color-surface] p-4 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+            <form onSubmit={handleGenerate} className="flex gap-2">
+              <input
+                type="text"
+                value={newKeyLabel}
+                onChange={(e) => setNewKeyLabel(e.target.value)}
+                placeholder='Label (e.g. "Chrome Extension")'
+                className="flex-1 rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 text-sm text-[--color-text-primary] outline-none placeholder:text-[--color-text-tertiary] focus:border-[--color-text-secondary]"
+              />
+              <button
+                type="submit"
+                disabled={createApiKey.isPending}
+                className="rounded-[10px] bg-[--color-accent] px-4 py-2 text-sm font-medium text-[--color-accent-fg] transition-opacity hover:opacity-90 disabled:opacity-50"
+              >
+                Generate Key
+              </button>
+            </form>
+          </div>
 
           {/* Show generated key once */}
           {generatedKey && (
-            <div className="mb-6 rounded-xl border border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-950">
-              <p className="mb-2 text-xs font-medium text-green-700 dark:text-green-300">
+            <div className="mb-6 rounded-xl border border-[--color-border] bg-[--color-surface] p-4 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+              <p className="mb-2 text-xs font-medium text-[--color-text-secondary]">
                 Your new API key — copy it now, it won&apos;t be shown again:
               </p>
               <div className="flex items-center gap-2">
-                <code className="flex-1 break-all rounded border border-neutral-200 bg-white px-3 py-2 font-mono text-xs dark:border-neutral-700 dark:bg-neutral-900">
+                <code className="flex-1 break-all rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 font-mono text-xs text-[--color-text-primary]">
                   {generatedKey}
                 </code>
                 <button
                   onClick={handleCopy}
-                  className="shrink-0 rounded-lg border border-neutral-300 px-3 py-2 text-sm transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800"
+                  className="shrink-0 rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 text-sm text-[--color-text-secondary] transition-colors hover:text-[--color-text-primary]"
                 >
                   {copied ? "Copied!" : "Copy"}
                 </button>
               </div>
               <button
                 onClick={() => setGeneratedKey(null)}
-                className="mt-2 text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200"
+                className="mt-2 text-xs text-[--color-text-tertiary] hover:text-[--color-text-secondary]"
               >
                 Dismiss
               </button>
@@ -110,24 +110,23 @@ export default function SettingsPage() {
           {isLoading ? (
             <div className="space-y-2">
               {[1, 2].map((i) => (
-                <div
-                  key={i}
-                  className="h-12 animate-pulse rounded-lg bg-neutral-100 dark:bg-neutral-800"
-                />
+                <div key={i} className="h-12 animate-pulse rounded-xl bg-[--color-surface]" />
               ))}
             </div>
           ) : apiKeys?.length === 0 ? (
-            <p className="py-8 text-center text-sm text-neutral-400">No API keys yet.</p>
+            <p className="py-8 text-center text-sm text-[--color-text-tertiary]">
+              No API keys yet.
+            </p>
           ) : (
             <div className="space-y-2">
               {apiKeys?.map((key) => (
                 <div
                   key={key.id}
-                  className="flex items-center justify-between rounded-lg border border-neutral-200 bg-white p-3 dark:border-neutral-800 dark:bg-neutral-900"
+                  className="flex items-center justify-between rounded-xl border border-[--color-border] bg-[--color-surface] p-3 shadow-[0_1px_3px_rgba(0,0,0,0.06)]"
                 >
                   <div>
-                    <p className="text-sm font-medium">{key.label}</p>
-                    <p className="text-xs text-neutral-400">
+                    <p className="text-sm font-medium text-[--color-text-primary]">{key.label}</p>
+                    <p className="text-xs text-[--color-text-tertiary]">
                       Created{" "}
                       {new Date(key.createdAt).toLocaleDateString("en-US", {
                         month: "short",
@@ -138,7 +137,7 @@ export default function SettingsPage() {
                   </div>
                   <button
                     onClick={() => handleDelete(key)}
-                    className="rounded px-2 py-1 text-sm text-red-500 transition-colors hover:bg-red-50 hover:text-red-700 dark:hover:bg-red-950"
+                    className="rounded-lg px-2 py-1 text-sm text-[--color-text-tertiary] transition-colors hover:bg-[--color-bg] hover:text-[--color-danger]"
                   >
                     Revoke
                   </button>
