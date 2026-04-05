@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Save, organize, and find your learning resources",
     start_url: "/dashboard",
     display: "standalone",
-    background_color: "#fafafa",
-    theme_color: "#2563eb",
+    background_color: "#f9fafb",
+    theme_color: "#22c55e",
     icons: [
       {
         src: "/icon-192.png",

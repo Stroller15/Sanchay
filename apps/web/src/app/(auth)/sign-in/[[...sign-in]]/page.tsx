@@ -31,41 +31,43 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center bg-[--color-bg]">
       <div className="w-full max-w-sm space-y-6 text-center">
-        <div className="space-y-2">
-          <h1 className="text-2xl font-bold">Sign in</h1>
-          <p className="text-sm text-neutral-500">Sign in to your account to continue</p>
+        <div className="space-y-1">
+          <h1 className="text-2xl font-bold text-[--color-text-primary]">Sanchay</h1>
+          <p className="text-sm text-[--color-text-secondary]">
+            Sign in to your account to continue
+          </p>
         </div>
 
-        {isDev && (
-          <form onSubmit={handleDevLogin} className="space-y-3 text-left">
-            <div className="rounded-md border border-yellow-200 bg-yellow-50 px-3 py-2 text-xs text-yellow-800">
-              Dev mode — enter any email to log in
-            </div>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-              required
-              className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-blue-500"
-            />
-            {error && <p className="text-xs text-red-500">{error}</p>}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
-            >
-              {loading ? "Signing in…" : "Sign in (dev)"}
-            </button>
-          </form>
-        )}
+        <div className="rounded-xl border border-[--color-border] bg-[--color-surface] p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+          {isDev && (
+            <form onSubmit={handleDevLogin} className="mb-4 space-y-3 text-left">
+              <div className="rounded-lg border border-yellow-200 bg-yellow-50 px-3 py-2 text-xs text-yellow-800">
+                Dev mode — enter any email to log in
+              </div>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                required
+                className="w-full rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 text-sm text-[--color-text-primary] outline-none placeholder:text-[--color-text-tertiary] focus:border-[--color-accent]"
+              />
+              {error && <p className="text-xs text-[--color-danger]">{error}</p>}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full rounded-lg bg-[--color-accent] px-4 py-2 text-sm font-medium text-[--color-accent-fg] transition-opacity hover:opacity-90 disabled:opacity-50"
+              >
+                {loading ? "Signing in…" : "Sign in (dev)"}
+              </button>
+            </form>
+          )}
 
-        {!isDev && (
           <button
             onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
-            className="flex w-full items-center justify-center gap-3 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+            className="flex w-full items-center justify-center gap-3 rounded-lg border border-[--color-border] bg-[--color-surface] px-4 py-2 text-sm font-medium text-[--color-text-primary] shadow-sm transition-colors hover:bg-[--color-bg]"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
               <path
@@ -87,7 +89,7 @@ export default function SignInPage() {
             </svg>
             Continue with Google
           </button>
-        )}
+        </div>
       </div>
     </div>
   );

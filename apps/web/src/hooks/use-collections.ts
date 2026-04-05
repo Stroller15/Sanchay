@@ -1,17 +1,20 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import { useApiClient } from "./use-api-client";
 import type { Collection } from "@sanchay/types";
 
 export function useCollections() {
   const api = useApiClient();
+  const { status } = useSession();
   return useQuery<Collection[]>({
     queryKey: ["collections"],
     queryFn: async () => {
       const res = await api.get<{ data: Collection[] }>("/collections");
       return res.data.data;
     },
+    enabled: status === "authenticated",
   });
 }
 

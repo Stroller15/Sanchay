@@ -26,13 +26,25 @@ export function SearchBar({
 
   return (
     <div className="relative">
-      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-neutral-400">🔍</span>
+      <svg
+        className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[--color-text-tertiary]"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        />
+      </svg>
       <input
         type="search"
         defaultValue={value}
         onChange={handleChange}
         placeholder={placeholder}
-        className="w-full rounded-lg border border-neutral-200 bg-transparent py-2 pl-9 pr-4 text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-400 focus:border-blue-500 dark:border-neutral-700 dark:text-white dark:placeholder:text-neutral-500 dark:focus:border-blue-500"
+        className="w-full rounded-full border border-[--color-border] bg-[--color-bg] py-2 pl-9 pr-4 text-sm text-[--color-text-primary] outline-none transition-colors placeholder:text-[--color-text-tertiary] focus:border-[--color-accent]"
       />
       {value && (
         <button
@@ -41,7 +53,7 @@ export function SearchBar({
             const input = document.querySelector('input[type="search"]') as HTMLInputElement;
             if (input) input.value = "";
           }}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-[--color-text-tertiary] hover:text-[--color-text-primary]"
         >
           ×
         </button>

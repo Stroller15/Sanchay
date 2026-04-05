@@ -9,7 +9,6 @@ async function main() {
   //   where: { email: "seed@example.com" },
   //   update: {},
   //   create: {
-  //     clerkId: "seed_clerk_id",
   //     email: "seed@example.com",
   //     name: "Seed User",
   //   },

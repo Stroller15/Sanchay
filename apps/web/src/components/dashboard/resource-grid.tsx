@@ -15,10 +15,7 @@ export function ResourceGrid({ resources, isLoading, hasFilters, onTagClick }: R
     return (
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {Array.from({ length: 6 }).map((_, i) => (
-          <div
-            key={i}
-            className="h-36 animate-pulse rounded-xl bg-neutral-100 dark:bg-neutral-800"
-          />
+          <div key={i} className="h-36 animate-pulse rounded-xl bg-[--color-pill-bg]" />
         ))}
       </div>
     );
@@ -28,10 +25,10 @@ export function ResourceGrid({ resources, isLoading, hasFilters, onTagClick }: R
     return (
       <div className="flex flex-col items-center justify-center py-24 text-center">
         <span className="mb-4 text-4xl">{hasFilters ? "🔍" : "📚"}</span>
-        <h3 className="text-lg font-medium text-neutral-700 dark:text-neutral-300">
+        <h3 className="text-lg font-medium text-[--color-text-primary]">
           {hasFilters ? "No results found" : "No resources yet"}
         </h3>
-        <p className="mt-1 max-w-xs text-sm text-neutral-400">
+        <p className="mt-1 max-w-xs text-sm text-[--color-text-tertiary]">
           {hasFilters
             ? "Try a different search term or clear filters"
             : "Paste a URL in the bar above to save your first resource"}

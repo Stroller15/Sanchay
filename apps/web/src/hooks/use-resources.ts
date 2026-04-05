@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import { useApiClient } from "./use-api-client";
 import type { Resource, PaginatedResponse } from "@sanchay/types";
 
@@ -15,6 +16,7 @@ interface ListResourcesParams {
 
 export function useResources(params: ListResourcesParams = {}) {
   const api = useApiClient();
+  const { status } = useSession();
   return useQuery<PaginatedResponse<Resource>>({
     queryKey: ["resources", params],
     queryFn: async () => {
@@ -23,6 +25,7 @@ export function useResources(params: ListResourcesParams = {}) {
       });
       return res.data;
     },
+    enabled: status === "authenticated",
   });
 }
 
