@@ -248,6 +248,9 @@ importers:
       '@sanchay/config':
         specifier: workspace:*
         version: link:../config
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.19.15
       prisma:
         specifier: ^6.2.1
         version: 6.19.2(typescript@5.9.3)

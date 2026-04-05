@@ -46,23 +46,17 @@ jobs:
         working-directory: apps/web
 
   deploy-api:
-    name: Deploy API to Railway
+    name: Deploy API to Render
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment: production
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli
-
-      - name: Deploy to Railway
-        run: railway up --service api
-        working-directory: apps/api
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      - name: Trigger Render deploy
+        run: |
+          curl -f -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            --fail-with-body
 
   run-migrations:
     name: Run DB Migrations
