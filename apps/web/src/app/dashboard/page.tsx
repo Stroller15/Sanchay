@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useSession, signOut } from "next-auth/react";
-import { useTheme } from "next-themes";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { useResources } from "@/hooks/use-resources";
 import { CollectionSidebar } from "@/components/dashboard/collection-sidebar";
@@ -10,44 +9,6 @@ import { PasteBar } from "@/components/dashboard/paste-bar";
 import { SearchBar } from "@/components/dashboard/search-bar";
 import { ResourceGrid } from "@/components/dashboard/resource-grid";
 import { redirect } from "next/navigation";
-
-function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-  return (
-    <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="rounded-lg p-1.5 text-[--color-text-secondary] transition-colors hover:bg-[--color-bg] hover:text-[--color-text-primary]"
-      title="Toggle theme"
-    >
-      <svg
-        className="hidden h-4 w-4 dark:block"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-        />
-      </svg>
-      <svg
-        className="block h-4 w-4 dark:hidden"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-        />
-      </svg>
-    </button>
-  );
-}
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
@@ -83,11 +44,10 @@ export default function DashboardPage() {
         onSelect={setSelectedCollectionId}
       />
 
-      <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
+      <main className="relative flex min-w-0 flex-1 flex-col overflow-hidden">
         {/* Top bar */}
         <header className="flex items-center justify-end border-b border-[--color-border] bg-[--color-surface] px-5 py-3">
           <div className="flex items-center gap-1.5">
-            <ThemeToggle />
             <a
               href="/settings"
               className="rounded-lg px-3 py-1.5 text-sm font-medium text-[--color-text-secondary] transition-colors hover:bg-[--color-bg] hover:text-[--color-text-primary]"
@@ -98,16 +58,16 @@ export default function DashboardPage() {
               <img
                 src={session.user.image}
                 alt={session.user.name ?? "User"}
-                className="h-7 w-7 rounded-lg ring-1 ring-[--color-border]"
+                className="h-7 w-7 rounded-full ring-1 ring-[--color-border]"
               />
             ) : (
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[--color-pill-bg] text-xs font-semibold text-[--color-text-secondary]">
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[--color-accent] text-xs font-semibold text-white">
                 {userInitial}
               </div>
             )}
             <button
               onClick={() => signOut()}
-              className="rounded-lg px-3 py-1.5 text-sm font-medium text-[--color-text-secondary] transition-colors hover:bg-[--color-bg] hover:text-[--color-text-primary]"
+              className="cursor-pointer rounded-lg px-3 py-1.5 text-sm font-medium text-[--color-text-secondary] transition-colors hover:bg-[--color-bg] hover:text-[--color-text-primary]"
             >
               Sign out
             </button>
@@ -124,7 +84,7 @@ export default function DashboardPage() {
           {activeTag && (
             <button
               onClick={() => setActiveTag(null)}
-              className="flex items-center gap-1 rounded-full bg-[--color-pill-bg] px-3 py-1 text-sm font-medium text-[--color-text-secondary] transition-colors hover:text-[--color-text-primary]"
+              className="flex cursor-pointer items-center gap-1 rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700 transition-colors hover:bg-green-200"
             >
               #{activeTag}
               <span className="ml-1 opacity-60">×</span>
@@ -132,8 +92,11 @@ export default function DashboardPage() {
           )}
         </div>
 
+        {/* Green gradient wash — matches Vamo style */}
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-green-100/40 via-green-50/20 to-transparent" />
+
         {/* Resource grid */}
-        <div className="flex-1 overflow-y-auto p-5">
+        <div className="relative flex-1 overflow-y-auto p-5">
           <ResourceGrid
             resources={data?.data ?? []}
             isLoading={isLoading}

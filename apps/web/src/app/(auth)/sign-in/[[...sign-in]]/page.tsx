@@ -52,13 +52,13 @@ export default function SignInPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 required
-                className="w-full rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 text-sm text-[--color-text-primary] outline-none placeholder:text-[--color-text-tertiary] focus:border-[--color-text-secondary]"
+                className="w-full rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 text-sm text-[--color-text-primary] outline-none placeholder:text-[--color-text-tertiary] focus:border-[--color-accent]"
               />
               {error && <p className="text-xs text-[--color-danger]">{error}</p>}
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-[10px] bg-[--color-accent] px-4 py-2 text-sm font-medium text-[--color-accent-fg] transition-opacity hover:opacity-90 disabled:opacity-50"
+                className="w-full rounded-lg bg-[--color-accent] px-4 py-2 text-sm font-medium text-[--color-accent-fg] transition-opacity hover:opacity-90 disabled:opacity-50"
               >
                 {loading ? "Signing in…" : "Sign in (dev)"}
               </button>
@@ -67,7 +67,7 @@ export default function SignInPage() {
 
           <button
             onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
-            className="flex w-full items-center justify-center gap-3 rounded-[10px] border border-[--color-border] bg-[--color-surface] px-4 py-2 text-sm font-medium text-[--color-text-primary] shadow-sm transition-colors hover:bg-[--color-bg]"
+            className="flex w-full items-center justify-center gap-3 rounded-lg border border-[--color-border] bg-[--color-surface] px-4 py-2 text-sm font-medium text-[--color-text-primary] shadow-sm transition-colors hover:bg-[--color-bg]"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
               <path

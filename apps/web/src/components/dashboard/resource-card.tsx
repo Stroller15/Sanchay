@@ -176,7 +176,7 @@ export function ResourceCard({ resource, onTagClick }: ResourceCardProps) {
                 <select
                   value={editCollectionId}
                   onChange={(e) => setEditCollectionId(e.target.value)}
-                  className="w-full rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 text-sm text-[--color-text-primary] outline-none focus:border-[--color-text-secondary]"
+                  className="w-full rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 text-sm text-[--color-text-primary] outline-none focus:border-[--color-accent]"
                 >
                   {collections?.map((c) => (
                     <option key={c.id} value={c.id}>
@@ -195,7 +195,7 @@ export function ResourceCard({ resource, onTagClick }: ResourceCardProps) {
                   value={editTags}
                   onChange={(e) => setEditTags(e.target.value)}
                   placeholder="react, frontend, tutorial"
-                  className="w-full rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 text-sm text-[--color-text-primary] outline-none placeholder:text-[--color-text-tertiary] focus:border-[--color-text-secondary]"
+                  className="w-full rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 text-sm text-[--color-text-primary] outline-none placeholder:text-[--color-text-tertiary] focus:border-[--color-accent]"
                 />
               </div>
 
@@ -208,7 +208,7 @@ export function ResourceCard({ resource, onTagClick }: ResourceCardProps) {
                   onChange={(e) => setEditNotes(e.target.value)}
                   placeholder="Optional notes…"
                   rows={3}
-                  className="w-full resize-none rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 text-sm text-[--color-text-primary] outline-none placeholder:text-[--color-text-tertiary] focus:border-[--color-text-secondary]"
+                  className="w-full resize-none rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 text-sm text-[--color-text-primary] outline-none placeholder:text-[--color-text-tertiary] focus:border-[--color-accent]"
                 />
               </div>
             </div>
@@ -217,13 +217,13 @@ export function ResourceCard({ resource, onTagClick }: ResourceCardProps) {
               <button
                 onClick={handleSave}
                 disabled={updateResource.isPending}
-                className="flex-1 rounded-[10px] bg-[--color-accent] px-4 py-2 text-sm font-medium text-[--color-accent-fg] transition-opacity hover:opacity-90 disabled:opacity-50"
+                className="flex-1 rounded-lg bg-[--color-accent] px-4 py-2 text-sm font-medium text-[--color-accent-fg] transition-opacity hover:opacity-90 disabled:opacity-50"
               >
                 {updateResource.isPending ? "Saving…" : "Save"}
               </button>
               <button
                 onClick={() => setIsEditing(false)}
-                className="rounded-[10px] border border-[--color-border] px-4 py-2 text-sm text-[--color-text-secondary] transition-colors hover:bg-[--color-bg]"
+                className="rounded-lg border border-[--color-border] px-4 py-2 text-sm text-[--color-text-secondary] transition-colors hover:bg-[--color-bg]"
               >
                 Cancel
               </button>

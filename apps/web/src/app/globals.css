@@ -5,26 +5,34 @@
   --font-mono: ui-monospace, monospace;
 
   /* Light mode tokens */
-  --color-bg: #f5f4f0;
+  --color-bg: #f9fafb;
   --color-surface: #ffffff;
-  --color-border: #e8e6e1;
+  --color-border: #e5e7eb;
 
-  --color-text-primary: #111110;
-  --color-text-secondary: #6b6965;
-  --color-text-tertiary: #9b9895;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-tertiary: #9ca3af;
 
-  --color-accent: #111110;
+  --color-accent: #22c55e;
   --color-accent-fg: #ffffff;
 
-  --color-pill-bg: #f0efeb;
+  --color-pill-bg: #f3f4f6;
 
-  --color-danger: #dc2626;
-  --color-success: #16a34a;
+  --color-danger: #ef4444;
+  --color-success: #22c55e;
+
+  /* Sidebar tokens */
+  --color-sidebar-bg: #111827;
+  --color-sidebar-surface: #1f2937;
+  --color-sidebar-border: #1f2937;
+  --color-sidebar-text: #f9fafb;
+  --color-sidebar-text-muted: #9ca3af;
+  --color-sidebar-active: #1f2937;
 }
 
 @layer base {
   :root {
-    color-scheme: light dark;
+    color-scheme: light;
   }
 
   html {
@@ -35,32 +43,8 @@
   }
 
   body {
-    background-color: #f5f4f0;
-    color: #111110;
+    background-color: #f9fafb;
+    color: #111827;
     font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   }
-
-  .dark body {
-    background-color: #0f0e0d;
-    color: #f5f4f0;
-  }
-}
-
-/* Dark mode overrides */
-.dark {
-  --color-bg: #0f0e0d;
-  --color-surface: #1c1b1a;
-  --color-border: #2c2a28;
-
-  --color-text-primary: #f5f4f0;
-  --color-text-secondary: #a09d99;
-  --color-text-tertiary: #6b6965;
-
-  --color-accent: #f5f4f0;
-  --color-accent-fg: #111110;
-
-  --color-pill-bg: #252321;
-
-  --color-danger: #dc2626;
-  --color-success: #4ade80;
 }

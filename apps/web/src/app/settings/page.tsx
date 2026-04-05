@@ -68,12 +68,12 @@ export default function SettingsPage() {
                 value={newKeyLabel}
                 onChange={(e) => setNewKeyLabel(e.target.value)}
                 placeholder='Label (e.g. "Chrome Extension")'
-                className="flex-1 rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 text-sm text-[--color-text-primary] outline-none placeholder:text-[--color-text-tertiary] focus:border-[--color-text-secondary]"
+                className="flex-1 rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2 text-sm text-[--color-text-primary] outline-none placeholder:text-[--color-text-tertiary] focus:border-[--color-accent]"
               />
               <button
                 type="submit"
                 disabled={createApiKey.isPending}
-                className="rounded-[10px] bg-[--color-accent] px-4 py-2 text-sm font-medium text-[--color-accent-fg] transition-opacity hover:opacity-90 disabled:opacity-50"
+                className="rounded-lg bg-[--color-accent] px-4 py-2 text-sm font-medium text-[--color-accent-fg] transition-opacity hover:opacity-90 disabled:opacity-50"
               >
                 Generate Key
               </button>

@@ -64,7 +64,7 @@ export function PasteBar({ defaultCollectionId }: PasteBarProps) {
             value={url}
             onChange={handleChange}
             placeholder="Paste a URL to save — GitHub, YouTube, PDF, article…"
-            className="w-full rounded-lg border border-[--color-border] bg-[--color-bg] px-4 py-2.5 text-sm text-[--color-text-primary] outline-none transition-colors placeholder:text-[--color-text-tertiary] focus:border-[--color-text-secondary]"
+            className="w-full rounded-lg border border-[--color-border] bg-[--color-bg] px-4 py-2.5 text-sm text-[--color-text-primary] outline-none transition-colors placeholder:text-[--color-text-tertiary] focus:border-[--color-accent]"
           />
           {validUrl && (
             <div className="absolute right-3 top-1/2 flex -translate-y-1/2 items-center gap-1.5">
@@ -92,7 +92,7 @@ export function PasteBar({ defaultCollectionId }: PasteBarProps) {
         <select
           value={selectedCollectionId ?? ""}
           onChange={(e) => setSelectedCollectionId(e.target.value || undefined)}
-          className="rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2.5 text-sm text-[--color-text-primary] outline-none transition-colors focus:border-[--color-text-secondary]"
+          className="rounded-lg border border-[--color-border] bg-[--color-bg] px-3 py-2.5 text-sm text-[--color-text-primary] outline-none transition-colors focus:border-[--color-accent]"
         >
           <option value="">Unsorted</option>
           {collections?.map((c) => (
@@ -105,7 +105,7 @@ export function PasteBar({ defaultCollectionId }: PasteBarProps) {
         <button
           type="submit"
           disabled={!url.trim() || createResource.isPending}
-          className="rounded-[10px] bg-[--color-accent] px-4 py-2.5 text-sm font-medium text-[--color-accent-fg] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+          className="cursor-pointer rounded-lg bg-green-500 px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
         >
           {createResource.isPending ? "Saving…" : "Save"}
         </button>

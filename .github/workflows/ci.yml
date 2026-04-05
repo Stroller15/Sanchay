@@ -51,10 +51,7 @@ jobs:
         env:
           DATABASE_URL: postgresql://test:test@localhost:5432/test
           DIRECT_URL: postgresql://test:test@localhost:5432/test
-          CLERK_SECRET_KEY: sk_test_placeholder
-          CLERK_PUBLISHABLE_KEY: pk_test_placeholder
           REDIS_URL: redis://localhost:6379
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_placeholder
 
   e2e:
     name: E2E Tests
@@ -86,7 +83,6 @@ jobs:
       - name: Build web app
         run: pnpm --filter @sanchay/web build
         env:
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
           NEXT_PUBLIC_API_URL: http://localhost:3001
 
       - name: Run E2E tests
